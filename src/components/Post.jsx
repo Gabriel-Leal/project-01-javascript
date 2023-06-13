@@ -34,6 +34,18 @@ export function Post() {
             <a href="#">#react</a> <a href="#">#newproject</a>
           </p>
         </div>
+
+        <form className={styles.commentForm}>
+          <strong>Give your feedback</strong>
+          <textarea
+            name=""
+            id=""
+            placeholder="Type your comment here"
+          ></textarea>
+          <footer>
+            <button type="submit">Post</button>
+          </footer>
+        </form>
       </article>
     </>
   );
