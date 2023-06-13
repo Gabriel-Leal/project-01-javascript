@@ -31,7 +31,7 @@ export function Post() {
             <a href="#">gabriel.design/doctorcare</a>
           </p>
           <p>
-            <a href="#">#react #newproject</a>
+            <a href="#">#react</a> <a href="#">#newproject</a>
           </p>
         </div>
       </article>
