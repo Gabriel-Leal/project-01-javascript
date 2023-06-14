@@ -6,7 +6,7 @@ import { format, formatDistanceToNow } from "date-fns";
 
 export function Post({ author, publishedAt, content }) {
   const [comments, setComments] = useState(["Great Post!"]);
-
+  const [newCommentText, setNewCommentText] = useState("");
   // const publishedDateFormatted = new Intl.DateTimeFormat("pt-BR", {
   //   day: "2-digit",
   //   month: "long",
@@ -23,9 +23,8 @@ export function Post({ author, publishedAt, content }) {
     addSuffix: true,
   });
 
-  const [newCommentText, setNewCommentText] = useState("");
-
   function handleNewCommentChange() {
+    event.target.setCustomValidity("");
     setNewCommentText(event.target.value);
   }
   function handleCreateNewComment() {
@@ -43,6 +42,12 @@ export function Post({ author, publishedAt, content }) {
     });
     setComments(commentsWithoutDeleteOne);
   }
+
+  function handleNewCommentInvalid() {
+    event.target.setCustomValidity("This field is required");
+  }
+
+  const isNewCommentEmpty = newCommentText.length === 0;
 
   return (
     <>
@@ -84,9 +89,13 @@ export function Post({ author, publishedAt, content }) {
             placeholder="Type your comment here"
             value={newCommentText}
             onChange={handleNewCommentChange}
+            onInvalid={handleNewCommentInvalid}
+            required
           ></textarea>
           <footer>
-            <button type="submit">Post</button>
+            <button type="submit" disabled={isNewCommentEmpty}>
+              Post
+            </button>
           </footer>
         </form>
         <div className={styles.commentList}>
